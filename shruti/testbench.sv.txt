@@ -1,0 +1,60 @@
+// Code your testbench here
+// or browse Examples
+`include "interface.sv"
+`include "model_base_test.sv"
+`include "alu_wr_test.sv"
+//---------------------------------------------------------------
+
+module tbench_top;
+
+  //---------------------------------------
+  //clock and reset signal declaration
+  //---------------------------------------
+  bit clk;
+  
+  //---------------------------------------
+  //clock generation
+  //---------------------------------------
+  always #5 clk = ~clk;
+  
+  //---------------------------------------
+  //reset Generation
+  //---------------------------------------
+
+  
+  //---------------------------------------
+  //interface instance
+  //---------------------------------------
+  alu_if intf(clk);
+  
+  //---------------------------------------
+  //DUT instance
+  //---------------------------------------
+  alu DUT (
+    .clk(intf.clk),
+    .a(intf.a),
+    .b(intf.b),
+    .i(intf.i),
+    .v(intf.v),
+    .s(intf.s)
+   );
+  
+  //---------------------------------------
+  //passing the interface handle to lower heirarchy using set method 
+  //and enabling the wave dump
+  //---------------------------------------
+  initial begin 
+    uvm_config_db#(virtual alu_if)::set(uvm_root::get(),"*","vif",intf);
+    //enable wave dump
+    $dumpfile("dump.vcd"); 
+    $dumpvars;
+  end
+  
+  //---------------------------------------
+  //calling test
+  //---------------------------------------
+  initial begin 
+    run_test();
+  end
+  
+endmodule
