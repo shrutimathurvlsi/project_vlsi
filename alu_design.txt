@@ -1,3 +1,4 @@
+#faltu design#
 module alu(clk,a,b,i,v,s);
   input clk;
   input [3:0]a;
