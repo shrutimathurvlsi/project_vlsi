@@ -1,7 +1,4 @@
-#faltu design#
-#ceo shruti mathur#
-#ek or change fir se#
-sab kuch faltu hai
+#kuch acha#
 module alu(clk,a,b,i,v,s);
   input clk;
   input [3:0]a;
