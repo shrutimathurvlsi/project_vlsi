@@ -1,5 +1,6 @@
 #faltu design#
 #ceo shruti mathur#
+#ek or change fir se#
 module alu(clk,a,b,i,v,s);
   input clk;
   input [3:0]a;
